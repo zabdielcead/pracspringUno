@@ -43,14 +43,15 @@ public class PeliculasController {
 		public String guardar(Pelicula pelicula, BindingResult result, RedirectAttributes attributes ){ //podemos ver los errores Binding si sale un 400 u otro error
 			// RedirectAttributes attributes son atributos se pasan por redirect y spring los elimina cuando se hizo la peticion 
 			
-			/*if(result.hasErrors()){
+			if(result.hasErrors()){
 				return "peliculas/formPelicula";
 				//ver si existen errores
-			}*/
-			
-			for( ObjectError error : result.getAllErrors() ){ //nos mostrara los errores en pantalla
-				System.out.println(error.getDefaultMessage());
 			}
+			
+			/*for( ObjectError error : result.getAllErrors() ){ //nos mostrara los errores en pantalla
+				System.out.println(error.getDefaultMessage());
+			}*/
+			// https://stackoverflow.com/questions/6128134/can-i-manage-multiple-browser-tabs-with-spring-security
 			
 			System.out.println("Recibiendo objeto pelicula: "+pelicula );
 			
