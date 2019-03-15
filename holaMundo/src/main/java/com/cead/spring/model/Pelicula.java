@@ -11,6 +11,13 @@ public class Pelicula {
 	private String imagen = "cinema.png";
 	private Date fechaEstreno;
 	private String estatus = "Activa";
+	
+	public Pelicula(){
+		System.out.println("constructor pelicula");
+	}
+	
+	private Detalle detalle;
+	
 	public int getId() {
 		return id;
 	}
@@ -59,12 +66,22 @@ public class Pelicula {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
+	
+	
+	public Detalle getDetalle() {
+		return detalle;
+	}
+	public void setDetalle(Detalle detalle) {
+		this.detalle = detalle;
+	}
 	@Override
 	public String toString() {
 		return "Pelicula [id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", clasificacion="
 				+ clasificacion + ", genero=" + genero + ", imagen=" + imagen + ", fechaEstreno=" + fechaEstreno
-				+ ", estatus=" + estatus + "]";
+				+ ", estatus=" + estatus + ", detalle=" + detalle + "]";
 	}
+	
+	
 	
 	
 	

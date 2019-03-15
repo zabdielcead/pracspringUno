@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,54 +40,71 @@
 			<div class='alert alert-danger' role='alert'>
 				Por favor corrija los siguientes errores:
 				<ul>
-					<c:forEach var="error" items="${errors.allErrors}"> <!-- errores BindingResult result -->
+					<c:forEach var="error" items="${errors.allErrors}">
+						<!-- errores BindingResult result -->
 						<li><spring:message message="${error}" /></li>
 					</c:forEach>
 				</ul>
 			</div>
 		</spring:hasBindErrors>
 
-		<form action="${urlForm}" method="post">
+		<form:form action="${urlForm}" method="post"
+			enctype="multipart/form-data" modelAttribute="pelicula">
+			
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="titulo">Título</label> <input type="text"
-							class="form-control" name="titulo" id="titulo"
-							required="required" />
+						  <img class="img-rounded" src="${urlPublic}/images/${pelicula.imagen}" title="imagen actual de la pelicula" width="150" height="200">
+					</div>
+				</div>
+			</div>	
+			<!-- se asocia @ModelAttribute en el controlller -->
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="titulo">Título</label>
+						<form:hidden path="id"/>
+						<form:input path="titulo" type="text" class="form-control"
+							name="titulo" id="titulo" required="required" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="duracion">Duracion</label> <input type="text"
-							class="form-control" name="duracion" id="duracion"
-							required="required" />
+						<label for="duracion">Duracion</label>
+						<form:input type="text" path="duracion" class="form-control"
+							name="duracion" id="duracion" required="required" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="clasificacion" class="control-label">Clasificacion</label>
-						<select id="clasificacion" name="clasificacion"
-							class="form-control">
-							<option value="A">Clasificacion A</option>
-							<option value="B">Clasificacion B</option>
-							<option value="C">Clasificacion C</option>
-						</select>
+						<form:select path="clasificacion" id="clasificacion"
+							name="clasificacion" class="form-control">
+							<form:option value="A">Clasificacion A</form:option>
+							<form:option value="B">Clasificacion B</form:option>
+							<form:option value="C">Clasificacion C</form:option>
+						</form:select>
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="genero" class="control-label">Genero</label> <select
-							id="genero" name="genero" class="form-control">
-							<option value="Accion">Accion</option>
-							<option value="Aventura">Aventura</option>
-							<option value="Clasicas">Clasicas</option>
-							<option value="Comedia Romantica">Comedia Romantica</option>
-							<option value="Drama">Drama</option>
-							<option value="Terror">Terror</option>
-							<option value="Infantil">Infantil</option>
-							<option value="Accion y Aventura">Accion y Aventura</option>
-							<option value="Romantica">Romantica</option>
-						</select>
+						<label for="genero" class="control-label">Genero</label>
+						<form:select path="genero" id="genero" name="genero" class="form-control" items="${ generos }"> 
+							 
+							 
+							
+							<%-- 
+								<form:option value="Accion">Accion</form:option>
+								<form:option value="Aventura">Aventura</form:option>
+								<form:option value="Clasicas">Clasicas</form:option>
+								<form:option value="Comedia Romantica">Comedia Romantica</form:option>
+								<form:option value="Drama">Drama</form:option>
+								<form:option value="Terror">Terror</form:option>
+								<form:option value="Infantil">Infantil</form:option>
+								<form:option value="Accion y Aventura">Accion y Aventura</form:option>
+								<form:option value="Romantica">Romantica</form:option>
+							--%>
+						</form:select>
 					</div>
 				</div>
 			</div>
@@ -95,69 +112,77 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="estatus" class="control-label">Estatus</label> <select
-							id="genero" name="estatus" class="form-control">
-							<option value="Activa">Activa</option>
-							<option value="Inactiva">Inactiva</option>
-						</select>
+						<label for="estatus" class="control-label">Estatus</label>
+						<form:select path="estatus" id="estatus" name="estatus"
+							class="form-control">
+							<form:option value="Activa">Activa</form:option>
+							<form:option value="Inactiva">Inactiva</form:option>
+						</form:select>
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="fechaEstreno">Fecha Estreno</label> <input type="text"
-							class="form-control" name="fechaEstreno" id="fechaEstreno"
-							required="required" />
+						<label for="fechaEstreno">Fecha Estreno</label>
+						<form:input type="text" path="fechaEstreno" class="form-control"
+							name="fechaEstreno" id="fechaEstreno" required="required" />
 					</div>
 				</div>
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="imagen">Imagen</label> <input type="file"
+						<label for="imagen">Imagen</label>
+						<form:hidden path="imagen" />
+						 <input type="file"
 							id="archivoImagen" name="archivoImagen" />
 						<p class="help-block">Imagen de la pelicula</p>
 					</div>
 				</div>
 			</div>
 
-			<!--  
-        <div class="page-header">
-            <h3 class="blog-title"><span class="label label-success">Detalles</span></h3>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label for="director">Director</label>
-              <input type="text" class="form-control" name="director" id="director" required="required" />
-            </div>  
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label for="actores">Actores</label>
-              <input type="text" class="form-control" name="actores" id="actores" required="required" />
-            </div>  
-          </div>
+			<div class="page-header">
+				<h3 class="blog-title">
+					<span class="label label-success">Detalles</span>
+				</h3>
+			</div>
 
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="trailer">URL del Trailer (Youtube)</label>
-              <input type="text" class="form-control" name="trailer" id="trailer" placeholder="URL completa del video de YOUTUBE" required="required" />
-            </div>  
-          </div> 
-        </div> 
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="director">Director</label> 
+						<form:input type="text" 	class="form-control" path="detalle.director" name="director" id="director"
+							required="required" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="actores">Actores</label> 
+						<form:input  type="text" 	class="form-control" path="detalle.actores" name="actores" id="actores"
+							required="required" />
+					</div>
+				</div>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="sinopsis">Sinopsis</label>
-              <textarea class="form-control" rows="5" name="sinopsis" id="sinopsis"></textarea>
-            </div> 
-          </div> 
-        </div>
-        -->
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="trailer">URL del Trailer (Youtube)</label> 
+						<form:input	type="text" class="form-control" path="detalle.trailer" name="trailer" id="trailer" placeholder="URL completa del video de YOUTUBE"
+							required="required" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="sinopsis">Sinopsis</label>
+						<form:textarea class="form-control" rows="5"  path="detalle.sinopsis" name="sinopsis" id="sinopsis"></form:textarea>
+					</div>
+				</div>
+			</div>
+
 
 			<button type="submit" class="btn btn-danger">Guardar</button>
-		</form>
+		</form:form>
 
 		<hr class="featurette-divider">
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cead.spring.model.Pelicula;
+import com.cead.spring.service.IBannersService;
 import com.cead.spring.service.IPeliculasService;
 import com.cead.spring.util.Utileria;
 
@@ -24,6 +25,9 @@ import com.cead.spring.util.Utileria;
 public class HomeController {
 	
 	private SimpleDateFormat datef = new SimpleDateFormat("dd-MM-yyyy");
+	
+	@Autowired
+	private IBannersService serviceBanners; // Ejercicio : Solucion
 	
 	@Autowired
 	private IPeliculasService servicePeliculas;
@@ -45,6 +49,7 @@ public class HomeController {
 		model.addAttribute("fechas",listaFechas);
 		model.addAttribute("fechaBusqueda", fecha);
 		model.addAttribute("peliculas",peliculas);
+		model.addAttribute("banners", serviceBanners.buscarTodos()); // Ejercicio : Solucion
 		return "home";
 	}
 	
@@ -61,6 +66,7 @@ public class HomeController {
 		model.addAttribute("fechas",listaFechas);
 		model.addAttribute("fechaBusqueda", datef.format(new Date()));
 		model.addAttribute("peliculas",peliculas);
+		model.addAttribute("banners", serviceBanners.buscarTodos()); // Ejercicio : Solucion
 		return "home"; //nombre jsp
 	}
 	
