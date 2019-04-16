@@ -10,6 +10,7 @@
 		<config>webapp/WEB-INF/spring/root-context.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>webapp/WEB-INF/spring/dispatcher-servlet.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

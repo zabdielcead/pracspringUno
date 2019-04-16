@@ -2,9 +2,24 @@ package com.cead.spring.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="Noticias")
 public class Noticia {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //para oracle serie SECUENCE
 	private int id;
+	
+	
+	
+	//PARA LAS COLUMNAS SI SE LLAMAN IGUAL QUE LAS TABLAS NO AGREGAMOS @Column si se llaman diferentes si se tendriaan que usar
 	private String titulo;
 	private Date fecha;
 	private String detalle;
