@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.cead.spring.model.Pelicula;
 
-@Service
+//@Service
 public class PeliculasServiceImpl implements IPeliculasService{
 	
 	private List<Pelicula> lista = null;
@@ -112,5 +114,19 @@ public class PeliculasServiceImpl implements IPeliculasService{
 		
 		return generos;
 	}
+
+	@Override
+	public void eliminar(int idPelicula) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Page<Pelicula> buscarTodas(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

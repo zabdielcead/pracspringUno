@@ -64,6 +64,7 @@
 					<div class="form-group">
 						<label for="titulo">Título</label>
 						<form:hidden path="id"/>
+						<form:hidden path="detalle.id"/>
 						<form:input path="titulo" type="text" class="form-control"
 							name="titulo" id="titulo" required="required" />
 					</div>

@@ -86,7 +86,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/detailReqParam", method=RequestMethod.GET ) // url 
-	public String mostrarDetalleReq(Model model,@RequestParam("idMovie") int idPelicula, @RequestParam("fecha") String fecha){
+	public String mostrarDetalleReq(Model model,@RequestParam("idMovie") int idPelicula, @RequestParam("fecha") String fecha){   // metodo utilizado
 		System.out.println("buscando horario para la pelicula idpelicula: "+ idPelicula);
 		System.out.println("para la fecha: "+ fecha);
 		
